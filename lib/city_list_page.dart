@@ -40,7 +40,7 @@ class CityListPage extends StatelessWidget {
                 // 選択した市区町村の詳細画面へ遷移
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => const CityDetailPage(),
+                    builder: (context) => CityDetailPage(city: city),
                   ),
                 );
               },
