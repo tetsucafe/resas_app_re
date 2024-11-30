@@ -48,7 +48,7 @@ class _CityDetailPageState extends State<CityDetailPage> {
           final result = jsonDecode(snapshot.data!)['result'] as Map<String, dynamic>;
           final data = result['data'] as List;
           final items = data.cast<Map<String, dynamic>>();
-          return ListView.builder(
+          return ListView.separated(
             itemCount: items.length,
             itemBuilder: (context, index) {
               final item = items[index];
@@ -56,6 +56,9 @@ class _CityDetailPageState extends State<CityDetailPage> {
                 title: Text(item['year'].toString()),
                 trailing: Text(item['value'].toString()),
               );
+            }, 
+            separatorBuilder: (BuildContext context, int index) { 
+              return const Divider();
             },
           );
         }
