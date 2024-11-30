@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'env.dart';
 
@@ -49,18 +51,20 @@ class _CityListPageState extends State<CityListPage> {
       ),
       body: FutureBuilder<String>(
           future: _future,
-          builder: (context, snapshot) {
+          builder: (context, snapshot) { //snapshotには、非同期処理の字状態やデータが入っている
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
             }
+            final json = jsonDecode(snapshot.data!)['result'] as List;
+            final items = json.cast<Map<String, dynamic>>();
             print(snapshot.data);
             return ListView(
               children: [
-                for (final city in cities)
+                for (final city in items)
                   ListTile(
-                    title: Text(city),
+                    title: Text(city['cityName']),
                     subtitle: const Text(
                         '政令指定都市'), // This is fine as it's a constant string
                     trailing: const Icon(Icons.navigate_next),
@@ -68,7 +72,7 @@ class _CityListPageState extends State<CityListPage> {
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) => CityDetailPage(
-                            city: city,
+                            city: city['cityName'],
                           ),
                         ),
                       );
