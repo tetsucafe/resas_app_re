@@ -51,7 +51,7 @@ class _CityListPageState extends State<CityListPage> {
             final cities = items
               .map((item) => City.fromJson(item)).toList();
             //パフォーマンスを高めるため、ListView.builderを使う（使わないと、全てのデータをメモリに読み込む）
-            return ListView.builder(
+            return ListView.separated(
               itemCount: cities.length,
               itemBuilder: (context, index){
                 final city = cities[index];
@@ -69,7 +69,8 @@ class _CityListPageState extends State<CityListPage> {
                       );
                     },
                 );
-              },
+              }, 
+              separatorBuilder: (BuildContext context, int index) => const Divider(),
             );
           }
       ),
