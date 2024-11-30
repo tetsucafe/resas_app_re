@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:resas_app/city_detail_page.dart';
 
 class CityListPage extends StatelessWidget {
   const CityListPage({
@@ -36,7 +37,12 @@ class CityListPage extends StatelessWidget {
               subtitle: const Text('政令指定都市'),
               trailing: const Icon(Icons.navigate_next),
               onTap: () {
-                // TODO: 選択した市区町村の詳細画面へ遷移
+                // 選択した市区町村の詳細画面へ遷移
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const CityDetailPage(),
+                  ),
+                );
               },
           )
         ],
