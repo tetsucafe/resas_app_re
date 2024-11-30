@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
           title: const Text('RESAS_APP'),
         ),
         body: const Center(
-          child: Text('Hello World'),
+          child: Text('市区町村の一覧画面です'),
         ),
       ),
     );
