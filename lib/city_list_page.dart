@@ -12,12 +12,12 @@ class CityListPage extends StatefulWidget {
 
 class _CityListPageState extends State<CityListPage> {
 
-  late Future<void> future;
+  late var _future;
   //画面を開いた時の処理
   @override
   void initState() {
     super.initState();
-    future = Future.delayed(const Duration(seconds: 3));
+    _future = Future.delayed(const Duration(seconds: 3));
   }
   Widget build(BuildContext context) {
     
@@ -42,7 +42,7 @@ class _CityListPageState extends State<CityListPage> {
         title: const Text('市区町村一覧'),
       ),
       body: FutureBuilder<void>(
-        future: future,
+        future: _future,
         builder: (context, snapshot) {
           if(snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
