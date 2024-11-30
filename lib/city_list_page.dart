@@ -32,18 +32,6 @@ class _CityListPageState extends State<CityListPage> {
 
   @override
   Widget build(BuildContext context) {
-    const cities = [
-      '札幌市',
-      '横浜市',
-      '川崎市',
-      '相模原市',
-      '仙台市',
-      'さいたま市',
-      '千葉市',
-      '静岡市',
-      '浜松市',
-      '北九州市',
-    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -59,11 +47,12 @@ class _CityListPageState extends State<CityListPage> {
             }
             final json = jsonDecode(snapshot.data!)['result'] as List;
             final items = json.cast<Map<String, dynamic>>();
-            print(snapshot.data);
-            return ListView(
-              children: [
-                for (final city in items)
-                  ListTile(
+            //パフォーマンスを高めるため、ListView.builderを使う（使わないと、全てのデータをメモリに読み込む）
+            return ListView.builder(
+              itemCount: items.length,
+              itemBuilder: (context, index){
+                final city = items[index];
+                return ListTile(
                     title: Text(city['cityName']),
                     subtitle: const Text(
                         '政令指定都市'), // This is fine as it's a constant string
@@ -77,10 +66,11 @@ class _CityListPageState extends State<CityListPage> {
                         ),
                       );
                     },
-                  ),
-              ],
+                );
+              },
             );
-          }),
+          }
+      ),
     );
   }
-}
+} 
