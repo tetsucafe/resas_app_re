@@ -57,7 +57,7 @@ class _CityListPageState extends State<CityListPage> {
                 final city = cities[index];
                 return ListTile(
                     title: Text(city.cityName),
-                    subtitle: Text(city.bigCityFlag), // This is fine as it's a constant string
+                    subtitle: Text(city.cityType.label), // This is fine as it's a constant string
                     trailing: const Icon(Icons.navigate_next),
                     onTap: () {
                       Navigator.of(context).push(
