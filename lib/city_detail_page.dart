@@ -54,7 +54,10 @@ class _CityDetailPageState extends State<CityDetailPage> {
               final item = items[index];
               return ListTile(
                 title: Text(item['year'].toString()),
-                trailing: Text(item['value'].toString()),
+                trailing: Text(
+                  item['value'].toString(),
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
               );
             }, 
             separatorBuilder: (BuildContext context, int index) { 
