@@ -1,12 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:resas_app/city_detail_page.dart';
 
-class CityListPage extends StatelessWidget {
+class CityListPage extends StatefulWidget {
   const CityListPage({
     super.key,
   });
 
   @override
+  State<CityListPage> createState() => _CityListPageState();
+}
+
+class _CityListPageState extends State<CityListPage> {
+
+  late Future<void> future;
+  //画面を開いた時の処理
+  @override
+  void initState() {
+    super.initState();
+    future = Future.delayed(const Duration(seconds: 3));
+  }
   Widget build(BuildContext context) {
     
     const cities = [
@@ -30,7 +42,7 @@ class CityListPage extends StatelessWidget {
         title: const Text('市区町村一覧'),
       ),
       body: FutureBuilder<void>(
-        future: Future.delayed(const Duration(seconds: 3)),
+        future: future,
         builder: (context, snapshot) {
           if(snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
