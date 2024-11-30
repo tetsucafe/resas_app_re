@@ -12,13 +12,15 @@ class CityListPage extends StatefulWidget {
 
 class _CityListPageState extends State<CityListPage> {
 
-  late var _future;
+  late Future<void> _future;
   //画面を開いた時の処理
   @override
   void initState() {
     super.initState();
     _future = Future.delayed(const Duration(seconds: 3));
   }
+
+  @override
   Widget build(BuildContext context) {
     
     const cities = [
