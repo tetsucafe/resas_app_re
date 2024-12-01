@@ -2,9 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:resas_app/annual_municipality_tax.dart';
 import 'package:resas_app/city.dart';
 import 'package:resas_app/env.dart';
 import 'package:http/http.dart' as http;
+import 'package:resas_app/annual_municipality_tax.dart';
 
 class CityDetailPage extends StatefulWidget {
   const CityDetailPage({super.key, required this.city});
@@ -69,7 +71,6 @@ class _CityDetailPageState extends State<CityDetailPage> {
       ),
     );
   }
-
 
   /// 地方税の金額をフォーマットして返す
   /// [value]地方税の金額(単位：千円)
